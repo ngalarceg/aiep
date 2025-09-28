@@ -1,5 +1,5 @@
-﻿using System.Collections.Generic;
-using BoockWorldApp.Models;  
+using System.Collections.Generic;
+using BoockWorldApp.Models;
 
 namespace BoockWorldApp.Services
 {
@@ -7,7 +7,7 @@ namespace BoockWorldApp.Services
     {
         public static List<Usuario> Usuarios { get; } = new List<Usuario>();
         public static List<Libro> Libros { get; } = new List<Libro>();
-        public static List<Prestamo> Prestamos { get; } = [];
+        public static List<Prestamo> Prestamos { get; } = new List<Prestamo>();
 
         public static int NextUsuarioId = 1;
         public static int NextLibroId = 1;

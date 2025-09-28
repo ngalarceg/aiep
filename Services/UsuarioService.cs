@@ -1,30 +1,34 @@
-﻿using System.Collections.Generic;
+using System.Collections.Generic;
+using System.Linq;
 using BoockWorldApp.Models;
 
 namespace BoockWorldApp.Services
 {
     public class UsuarioService
     {
-        public List <Usuario> GetAll () => DataStore.Usuarios.ToList ();
-        public Usuario GetById(int id) => DataStore.Usuarios.FirstOrDefault(u => u.Id == id);
+        public List<Usuario> GetAll() => DataStore.Usuarios.ToList();
 
-        public void Add(Usuario u)
+        public Usuario? GetById(int id) => DataStore.Usuarios.FirstOrDefault(u => u.Id == id);
+
+        public void Add(Usuario usuario)
         {
-            u.Id = DataStore.NextUsuarioId++;
-            DataStore.Usuarios.Add(u);
-        
+            usuario.Id = DataStore.NextUsuarioId++;
+            DataStore.Usuarios.Add(usuario);
         }
-        public void Update(Usuario u)
+
+        public void Update(Usuario usuario)
         {
-            var idx = DataStore.Usuarios.FindIndex(x => x.Id == u.Id);
-            if (idx >= 0) DataStore.Usuarios[idx] = u;
-        
+            var idx = DataStore.Usuarios.FindIndex(x => x.Id == usuario.Id);
+            if (idx >= 0)
+            {
+                DataStore.Usuarios[idx] = usuario;
+            }
         }
+
         public void Delete(int id)
         {
             DataStore.Usuarios.RemoveAll(u => u.Id == id);
             DataStore.Prestamos.RemoveAll(p => p.UsuarioId == id);
-        
         }
     }
 }
